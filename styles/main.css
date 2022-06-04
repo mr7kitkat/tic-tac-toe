@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --torquise: #41EAD4;
+    --navy: #011627;
+    --gray: #FDFFFC;
+    --red:#F71735;
+}
+
+
+body {
+    height: 100vh;
+    width: 100vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--navy);
+}
+
+
+main {
+    display: grid;
+    height: 100%;
+    width: 100%;
+    max-width: 500px;
+    max-height: 500px;
+    background-color: var(--gray);
+}
+
+main img {
+    border: 1px solid var(--navy);
+    height: auto;
+    width: 100%;
+    object-position: center;
+}
