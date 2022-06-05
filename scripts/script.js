@@ -29,22 +29,50 @@ let currentMove = './images/cross.png';
 
 cells.forEach(cell => {
     cell.addEventListener("click", (e) => {
-        e.target.setAttribute('src', currentMove);
+
         const row = Number(e.target.dataset.row);
         const col = Number(e.target.dataset.col);
-        if (currentMove.includes("cross")) {
-            mazeAry[row][col] = 'x';
-            currentMove = './images/circle.png';
-        }else {
-            mazeAry[row][col] = 'o';
-            currentMove = './images/cross.png' ;
+        if(!mazeAry[row][col]) {
+            e.target.setAttribute('src', currentMove);
+
+            if (currentMove.includes("cross")) {
+                mazeAry[row][col] = 'x';
+                currentMove = './images/circle.png';
+            }else {
+                mazeAry[row][col] = 'o';
+                currentMove = './images/cross.png' ;
+            }
+    
+            console.table(validateCol(mazeAry, row, col));    
         }
 
-        console.table(mazeAry);
     })
 })
 
 
 
+function validateRow(ary, row, col) {
+    const clickedCell = ary[row][col];
+    const check = ary[row].every(item => {
+        return item === clickedCell;
+    });
 
+    return check ? clickedCell : false;
+}
+
+
+
+function validateCol(ary, row, col) {
+    const clickedCell = ary[row][col];
+    let flag = false;
+    for (let i = 0; i < ary.length; i++) {
+        if (ary[i][col] === clickedCell) {
+            flag = true;
+        }else {
+            flag = false;
+        }
+    }
+
+    return flag ? clickedCell : false;
+}
 
