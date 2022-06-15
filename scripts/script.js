@@ -18,9 +18,9 @@
         getImg: function(lookupval) {
             let src;
             if(lookupval === 'x') {
-                src = '../images/cross.png'
+                src = './images/cross.png'
             }else if (lookupval === 'o') {
-                src = '../images/circle.png'
+                src = './images/circle.png'
             }
             return src;
         },
