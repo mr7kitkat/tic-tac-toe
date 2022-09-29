@@ -4,25 +4,60 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tic Tac Toe</title>
+    <title>Tic Tac Toe V2</title>
 
-    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/reset.css">
+    <link rel="stylesheet" href="./styles/material.css">
 </head>
-<body>
-    <header>
-            <img src="" alt="" class="currentMove" >
-            <p>Your turn...</p>
-    </header>
-    <section class="win-status">
-        <div>
-            <img src="" alt="" class="winner-img" >
-            <h1>Wins!</h1>
-        </div>
-        <button class="replay">Replay</button>
-    </section>
-    <main>
-    </main>
+<body class="flex justify-center align-center">
+    <main class="br-8 flex justify-center align-center maxwidth containor">
 
+        <div class="maze grid border-for-maze br-10">
+            <div class="cell border-for-maze flex justify-center align-center">
+                <img src="" alt="" data-key="">
+            </div>
+            <div class="cell border-for-maze flex justify-center align-center">
+                <img src="" alt="" data-key="">
+            </div>
+            <div class="cell border-for-maze flex justify-center align-center">
+                <img src="" alt="" data-key="">
+            </div>
+            <div class="cell border-for-maze flex justify-center align-center">
+                <img src="" alt="" data-key="">
+            </div>
+            <div class="cell border-for-maze flex justify-center align-center">
+                <img src="" alt="" data-key="">
+            </div>
+            <div class="cell border-for-maze flex justify-center align-center">
+                <img src="" alt="" data-key="">
+            </div>
+            <div class="cell border-for-maze flex justify-center align-center">
+                <img src="" alt="" data-key="">
+            </div>
+            <div class="cell border-for-maze flex justify-center align-center">
+                <img src="" alt="" data-key="">
+            </div>
+            <div class="cell border-for-maze flex justify-center align-center">
+                <img src="" alt="" data-key="">
+            </div>
+        </div>
+
+        <div class="players flex maxwidth">
+            <div class="player br-6 border-for-maze flex">
+                <div class="flex justify-center align-center">
+                    <img src="./images/mtcross.svg" alt="">
+                </div>
+                <p>Player 1</p>
+            </div>
+
+            <div class="player br-6 border-for-maze flex">
+                <div class="flex justify-center align-center">
+                    <img src="./images/mtcircle.svg" alt="">
+                </div>
+                <p>Player 2</p>
+            </div>
+        </div>
+    </main>
     <script src="./scripts/script.js"></script>
 </body>
 </html>
