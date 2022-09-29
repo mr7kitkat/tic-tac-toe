@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+:root{
+    --blue-100: #3676CE;
+    --gray-100: #232429;
+    --white-100: #FBFBFC;
+    --black-100: #1A1E21;
+    --blue-200: #1776F7;
+}
+
+/* ******** Making reusable design ******** */
+.flex {
+    display: flex;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.br-2 {
+    border-radius: 2px;
+}
+
+.br-4 {
+    border-radius: 4px;
+}
+
+.br-6 {
+    border-radius: 6px;
+}
+
+.br-8 {
+    border-radius: 8px;
+}
+
+.br-10 {
+    border-radius: 10px;
+}
+
+.grid {
+    display: grid;
+}
+
+.maxwidth {
+    max-width: 1500px;
+}
+
+/* ///////////////////////////////////////////////////////// */
