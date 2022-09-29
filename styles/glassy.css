@@ -6,11 +6,11 @@
 
 
 :root{
-    --blue-100: #3676CE;
-    --gray-100: #232429;
-    --white-100: #FBFBFC;
-    --black-100: #1A1E21;
-    --blue-200: #1776F7;
+    --dark-100: #38424E;
+    --blue-100: #2A6DFA;
+    --white-100: #F7F7F7;
+    --white-0: #FFFFFF;
+    --lgray-100: #E6E8E7;
 }
 
 /* ******** Making reusable design ******** */
@@ -55,3 +55,63 @@
 }
 
 /* ///////////////////////////////////////////////////////// */
+.g-hide {
+    display: none;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--white-100);
+    background: url(../images/cross.svg) repeat 600px 900px, url(../images/circle.svg) repeat 330px;
+    background-size: contain;
+}
+
+main {
+    height: 97%;
+    width: 97%;
+    background-color: rgba(253,253,253,0.8);
+    border: 2px solid var(--white-100);
+    box-shadow: 10px 10px 25px var(--white-0);
+}
+
+.maze {
+    height: 500px;
+    width: 500px;
+    background-color: rgba(254, 254, 254, 0.7);
+    box-shadow: 10px 13px 15px rgba(128, 128, 128, 0.4), 15px 18px 20px rgba(128, 128, 128, 0.6);
+    border-radius: 15px;
+    padding: 18px;
+
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.cell {
+    height: 100%;
+    width: 100%;
+    border: 1.5px solid var(--lgray-100);
+}
+
+.g-0-tbr {
+    border-top: 0px;
+}
+
+.g-0-lbr {
+    border-left: 0px;
+}
+
+.g-0-rbr {
+    border-right: 0px;
+}
+
+.g-0-bbr {
+    border-bottom: 0px;
+}
+
+.cell img {
+    height: auto;
+    max-width: 100%;
+    position: relative;
+    top: 13px;
+}
