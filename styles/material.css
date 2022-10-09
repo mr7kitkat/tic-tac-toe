@@ -73,8 +73,6 @@ main {
 .maze {
     height: 500px;
     width: 500px;
-    grid-template-columns: repeat(3,1fr);
-    grid-template-rows: repeat(3,1fr);
 }
 
 div img {
