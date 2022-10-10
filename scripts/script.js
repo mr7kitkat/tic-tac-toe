@@ -12,7 +12,13 @@
     if (num < 3) {
       return;
     }
-    return Array(num).fill(Array(num).fill(null));
+
+    const arr = [];
+    for (let i = 0; i < num; i++) {
+      arr.push(Array(num).fill(null));
+    }
+
+    return arr;
   }
 
   // 1. Start with X or O
@@ -75,22 +81,31 @@
   }
 
   // VIEW ------------------------------------------------
-  function generateMaze(ary, parentElement) {
+  function generateMazeGridFromArray(ary) {
     let innerHtml = "";
 
     ary.forEach((row, ridx) => {
       row.forEach((col, cidx) => {
         innerHtml += `
         <div class="cell border-for-maze flex justify-center align-center" data-rc="${ridx},${cidx}">
-          <img src="" alt="">
+          <img src="${
+            col === "x"
+              ? "./images/cross.svg"
+              : col === "o"
+              ? "./images/circle.svg"
+              : ""
+          }" alt="">
         </div>
         `;
       });
     });
 
-    parentElement.innerHTML = innerHtml;
-    parentElement.style.gridTemplateColumns = `repeat(${ary.length},1fr)`;
-    parentElement.style.gridTemplateRows = `repeat(${ary.length},1fr)`;
+    return innerHtml;
   }
+
+  function render(parentElement, child) {
+    parentElement.innerHTML(child);
+  }
+
   
 })();
