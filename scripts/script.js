@@ -7,7 +7,7 @@
 */
 
 (function () {
-  // MODEL -----------------------------------------------------------------------------------------
+  // ---------------------------------------------MODEL ----------------------------------------
   function createMaze(num) {
     if (num < 3) {
       return;
@@ -80,7 +80,24 @@
     );
   }
 
-  // VIEW ------------------------------------------------------------------------------------------------------
+  // ---------------------------------HELPER FUNCTION---------------------------------------
+  function getRC(event) {
+    const RC = event.target.dataset["rc"];
+    return RC.split(",").map((num) => Number(num));
+  }
+
+  // update array based on input
+  function updateArray(event, inputArray, currentInput) {
+    const [row, col] = getRC(event);
+
+    if (!inputArray[row][col]) {
+      inputArray[row][col] = currentInput;
+    }
+
+    return inputArray[row][col];
+  }
+
+  // -------------------------------------------VIEW ----------------------------------------------
   function generateMazeGridFromArray(inputArray, parentElement) {
     let innerHtml = "";
 
@@ -97,18 +114,6 @@
     parentElement.innerHTML = innerHtml;
     parentElement.style.gridTemplateColumns = `repeat(${inputArray.length}, 1fr)`;
     parentElement.style.gridTemplateRows = `repeat(${inputArray.length}, 1fr)`;
-  }
-
-  // CONTROLLER -----------------------------------------------------------------------------------------
-  function updateArray(event, inputArray, currentInput) {
-    const RC = event.target.dataset["rc"];
-    const [row, col] = RC.split(",").map((num) => Number(num));
-
-    if (!inputArray[row][col]) {
-      inputArray[row][col] = currentInput;
-    }
-
-    return inputArray[row][col];
   }
 
   function updateImage(cellValue, imageElement) {
@@ -131,10 +136,21 @@
     return imageUpdate;
   }
 
-  // Workflow Controller ---------------------------------------------------
+  function highlightCurrentPlayer(currentInput) {
+    const players = document.querySelector(".players");
+    [...players.children].forEach((player) =>
+      player.classList.remove("mthighlight")
+    );
+
+    players.querySelector(`#p${currentInput}`).classList.add("mthighlight");
+  }
+  // --------------------------------------------CONTROLLER ---------------------------------------------
+
+  // Workflow Controller -------------------------------------------------------------------------
   // Defauts
   const mazeSize = 3;
   const inputManager = gameInput();
+  highlightCurrentPlayer(inputManager.currentInput());
 
   const mazeArray = createMaze(mazeSize);
   const mazeElement = document.querySelector(".maze");
@@ -144,6 +160,7 @@
   let counter = 0;
   // Handling Clicks
   const cells = document.querySelectorAll(".cell");
+
   cells.forEach((cell) => {
     cell.addEventListener("click", (eventAttr) => {
       const cellValue = updateArray(
@@ -155,9 +172,7 @@
       counter += updateImage(cellValue, cell.querySelector("img"));
 
       if (counter > 4) {
-        const RC = eventAttr.target.dataset["rc"];
-        const [row, col] = RC.split(",").map((num) => Number(num));
-
+        const [row, col] = getRC(eventAttr);
         const validation = checkValidation(
           mazeArray,
           inputManager.currentInput(),
@@ -171,6 +186,7 @@
       }
 
       inputManager.changeInput();
+      highlightCurrentPlayer(inputManager.currentInput());
     });
   });
   // ----------------------------------------------------------------------------------------------------

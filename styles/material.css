@@ -73,6 +73,8 @@ main {
 .maze {
     height: 500px;
     width: 500px;
+    position: relative;
+    z-index: 5;
 }
 
 div img {
@@ -114,6 +116,9 @@ div img {
     text-transform: uppercase;
 }
 
+.mthighlight {
+    border-color: white;
+}
 
 
 @media screen and (max-width: 1024px) {
