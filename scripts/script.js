@@ -7,7 +7,7 @@
 */
 
 (function () {
-  // MODEL ------------------------------------------------------------------------
+  // MODEL -----------------------------------------------------------------------------------------
   function createMaze(num) {
     if (num < 3) {
       return;
@@ -40,72 +40,138 @@
   }
 
   // 3. on Each input check for winning from that cell
-  function checkValidation(ary, input, row, col) {
-    function validateRow(ary, row, input) {
-      return ary[row].every((item) => item === input);
+  function checkValidation(inputArray, input, row, col) {
+    function validateRow(inputArray, row, input) {
+      return inputArray[row].every((item) => item === input);
     }
 
-    function validateCol(ary, col, input) {
-      return ary.every((item) => item[col] === input);
+    function validateCol(inputArray, col, input) {
+      return inputArray.every((item) => item[col] === input);
     }
 
-    function getDiagonalAxis(ary) {
+    function getDiagonalAxis(inputArray) {
       const left = [];
       const right = [];
 
-      let len = ary.length - 1;
+      let len = inputArray.length - 1;
       for (let row = 0; row <= len; row++) {
-        left.push(ary[row][row]);
-        right.push(ary[row][len - row]);
+        left.push(inputArray[row][row]);
+        right.push(inputArray[row][len - row]);
       }
 
       return [left, right];
     }
 
-    function validateCrossSides(ary, input) {
-      if (ary.length % 2 === 0) {
+    function validateCrossSides(inputArray, input) {
+      if (inputArray.length % 2 === 0) {
         return;
       }
-      const diagonalAxis = getDiagonalAxis(ary);
+      const diagonalAxis = getDiagonalAxis(inputArray);
       return diagonalAxis.some((subAry) =>
         subAry.every((item) => item === input)
       );
     }
 
     return (
-      validateRow(ary, row, input) ||
-      validateCol(ary, col, input) ||
-      validateCrossSides(ary, input) ||
+      validateRow(inputArray, row, input) ||
+      validateCol(inputArray, col, input) ||
+      validateCrossSides(inputArray, input) ||
       false
     );
   }
 
-  // VIEW ------------------------------------------------
-  function generateMazeGridFromArray(ary) {
+  // VIEW ------------------------------------------------------------------------------------------------------
+  function generateMazeGridFromArray(inputArray, parentElement) {
     let innerHtml = "";
 
-    ary.forEach((row, ridx) => {
+    inputArray.forEach((row, ridx) => {
       row.forEach((col, cidx) => {
         innerHtml += `
         <div class="cell border-for-maze flex justify-center align-center" data-rc="${ridx},${cidx}">
-          <img src="${
-            col === "x"
-              ? "./images/cross.svg"
-              : col === "o"
-              ? "./images/circle.svg"
-              : ""
-          }" alt="">
+          <img src="" alt="">
         </div>
         `;
       });
     });
 
-    return innerHtml;
+    parentElement.innerHTML = innerHtml;
+    parentElement.style.gridTemplateColumns = `repeat(${inputArray.length}, 1fr)`;
+    parentElement.style.gridTemplateRows = `repeat(${inputArray.length}, 1fr)`;
   }
 
-  function render(parentElement, child) {
-    parentElement.innerHTML(child);
+  // CONTROLLER -----------------------------------------------------------------------------------------
+  function updateArray(event, inputArray, currentInput) {
+    const RC = event.target.dataset["rc"];
+    const [row, col] = RC.split(",").map((num) => Number(num));
+
+    if (!inputArray[row][col]) {
+      inputArray[row][col] = currentInput;
+    }
+
+    return inputArray[row][col];
   }
 
-  
+  function updateImage(cellValue, imageElement) {
+    const path = "./images/";
+    const circle = "circle.svg";
+    const cross = "cross.svg";
+
+    let imageUpdate = 1;
+    let imageSrcValue;
+    if (cellValue === "x") {
+      imageSrcValue = path + cross;
+    } else if (cellValue === "o") {
+      imageSrcValue = path + circle;
+    } else {
+      imageSrcValue = "";
+      imageUpdate = 0;
+    }
+
+    imageElement.src = imageSrcValue;
+    return imageUpdate;
+  }
+
+  // Workflow Controller ---------------------------------------------------
+  // Defauts
+  const mazeSize = 3;
+  const inputManager = gameInput();
+
+  const mazeArray = createMaze(mazeSize);
+  const mazeElement = document.querySelector(".maze");
+
+  generateMazeGridFromArray(mazeArray, mazeElement);
+
+  let counter = 0;
+  // Handling Clicks
+  const cells = document.querySelectorAll(".cell");
+  cells.forEach((cell) => {
+    cell.addEventListener("click", (eventAttr) => {
+      const cellValue = updateArray(
+        eventAttr,
+        mazeArray,
+        inputManager.currentInput()
+      );
+
+      counter += updateImage(cellValue, cell.querySelector("img"));
+
+      if (counter > 4) {
+        const RC = eventAttr.target.dataset["rc"];
+        const [row, col] = RC.split(",").map((num) => Number(num));
+
+        const validation = checkValidation(
+          mazeArray,
+          inputManager.currentInput(),
+          row,
+          col
+        );
+
+        if (validation) {
+          console.log(`${inputManager.currentInput()} Wins`);
+        }
+      }
+
+      inputManager.changeInput();
+    });
+  });
+  // ----------------------------------------------------------------------------------------------------
 })();
