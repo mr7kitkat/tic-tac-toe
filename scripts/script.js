@@ -81,7 +81,7 @@
   }
 
   // VIEW ------------------------------------------------
-  function generateMazeGridFromArray(ary) {
+  function generateMazeGridFromArray(ary, parentElement) {
     let innerHtml = "";
 
     ary.forEach((row, ridx) => {
@@ -100,12 +100,16 @@
       });
     });
 
-    return innerHtml;
+    render(parentElement, innerHtml);
   }
 
   function render(parentElement, child) {
-    parentElement.innerHTML(child);
+    parentElement.innerHTML = child;
   }
 
-  
+  const mainElement = document.querySelector(".maze");
+  const mainAry = createMaze(3);
+  mainAry[0][1] = "x";
+
+  generateMazeGridFromArray(mainAry, mainElement);
 })();
