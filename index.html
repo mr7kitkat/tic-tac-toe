@@ -9,14 +9,14 @@
     <link rel="stylesheet" href="./styles/reset.css">
     <link rel="stylesheet" href="./styles/material.css">
 </head>
-<body class="flex justify-center align-center">
-    <main class="br-8 flex justify-center align-center maxwidth containor">
+<body class="flex justify-center align-center width-v height-v">
+    <main class="br-8 maxwidth containor flex justify-center align-center width-90v ">
 
         <div class="maze grid border-for-maze br-10">
 
         </div>
 
-        <div class="players flex maxwidth">
+        <div class="players flex maxwidth width-90v absolute">
             <div class="player br-6 border-for-maze flex" id="px">
                 <div class="flex justify-center align-center">
                     <img src="./images/cross.svg" alt="">
@@ -32,6 +32,19 @@
             </div>
         </div>
     </main>
+
+    <section class="width-v height-v absolute conclusion flex align-center justify-center remove" style="z-index: 32;">
+        <div class="status br-10 flex justify-center " style="flex-flow: column ; width: 100%; max-width: 750px; height: 400px; padding: 0.5rem; position: relative;">
+            <!-- <button style="height: 35px; width: 35px; font-size: 20px; background-color: red; outline: none; border: none; color: whitesmoke; right: 15px; top: 15px;" class="absolute">&Cross;</button> -->
+
+            <div class="messege flex align-center height-p width-p" style="justify-content: space-evenly;">
+                <img src="" alt="">
+                <p style="font-size: 6rem; font-weight: bolder; color:white; ">Wins!</p>
+            </div>
+
+            <button class="replay">REPLAY</button>
+        </div>
+    </section>
     <script src="./scripts/script.js"></script>
 </body>
 </html>

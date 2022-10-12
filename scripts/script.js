@@ -15,7 +15,7 @@
 
     const arr = [];
     for (let i = 0; i < num; i++) {
-      arr.push(Array(num).fill(null));
+      arr.push(Array(num).fill());
     }
 
     return arr;
@@ -144,50 +144,61 @@
 
     players.querySelector(`#p${currentInput}`).classList.add("mthighlight");
   }
+
+  function showWinning(status, currentInput) {
+    if (status) {
+      const conclusion = document.querySelector(".conclusion");
+      conclusion.classList.remove("remove");
+      updateImage(currentInput, conclusion.querySelector("img"));
+    }
+  }
   // --------------------------------------------CONTROLLER ---------------------------------------------
 
   // Workflow Controller -------------------------------------------------------------------------
   // Defauts
-  const mazeSize = 3;
-  const inputManager = gameInput();
-  highlightCurrentPlayer(inputManager.currentInput());
+  function startGame() {
+    const conclusion = document.querySelector(".conclusion");
+    conclusion.classList.add("remove");
 
-  const mazeArray = createMaze(mazeSize);
-  const mazeElement = document.querySelector(".maze");
+    const mazeSize = 3;
+    const inputManager = gameInput();
+    highlightCurrentPlayer(inputManager.currentInput());
 
-  generateMazeGridFromArray(mazeArray, mazeElement);
+    const mazeArray = createMaze(mazeSize);
+    const mazeElement = document.querySelector(".maze");
 
-  let counter = 0;
-  // Handling Clicks
-  const cells = document.querySelectorAll(".cell");
+    generateMazeGridFromArray(mazeArray, mazeElement);
 
-  cells.forEach((cell) => {
-    cell.addEventListener("click", (eventAttr) => {
-      const cellValue = updateArray(
-        eventAttr,
-        mazeArray,
-        inputManager.currentInput()
-      );
+    let counter = 0;
+    // Handling Clicks
+    const cells = document.querySelectorAll(".cell");
 
-      counter += updateImage(cellValue, cell.querySelector("img"));
-
-      if (counter > 4) {
-        const [row, col] = getRC(eventAttr);
-        const validation = checkValidation(
+    cells.forEach((cell) => {
+      cell.addEventListener("click", (eventAttr) => {
+        const cellValue = updateArray(
+          eventAttr,
           mazeArray,
-          inputManager.currentInput(),
-          row,
-          col
+          inputManager.currentInput()
         );
 
-        if (validation) {
-          console.log(`${inputManager.currentInput()} Wins`);
-        }
-      }
+        counter += updateImage(cellValue, cell.querySelector("img"));
 
-      inputManager.changeInput();
-      highlightCurrentPlayer(inputManager.currentInput());
+        if (counter > 4) {
+          const [row, col] = getRC(eventAttr);
+          const currentInput = inputManager.currentInput();
+          const validation = checkValidation(mazeArray, currentInput, row, col);
+
+          showWinning(validation, currentInput);
+        }
+
+        inputManager.changeInput();
+        highlightCurrentPlayer(inputManager.currentInput());
+      });
     });
-  });
+  }
+
+  window.addEventListener("load", startGame);
+  const replayBtn = document.querySelector("button.replay");
+  replayBtn.addEventListener("click", startGame);
   // ----------------------------------------------------------------------------------------------------
 })();
