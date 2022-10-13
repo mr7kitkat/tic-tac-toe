@@ -92,9 +92,10 @@
 
     if (!inputArray[row][col]) {
       inputArray[row][col] = currentInput;
+      return inputArray[row][col];
     }
 
-    return inputArray[row][col];
+    return;
   }
 
   // -------------------------------------------VIEW ----------------------------------------------
@@ -146,10 +147,20 @@
   }
 
   function showWinning(status, currentInput) {
-    if (status) {
-      const conclusion = document.querySelector(".conclusion");
+    const conclusion = document.querySelector(".conclusion");
+    const img = conclusion.querySelector("img");
+    img.classList.add("remove");
+
+    if (status === "win") {
       conclusion.classList.remove("remove");
-      updateImage(currentInput, conclusion.querySelector("img"));
+      img.classList.remove("remove");
+      updateImage(currentInput, img);
+      conclusion.querySelector(".messege p").textContent = "Wins!";
+    }
+
+    if (status === "draw") {
+      conclusion.classList.remove("remove");
+      conclusion.querySelector(".messege p").textContent = "It's Draw";
     }
   }
   // --------------------------------------------CONTROLLER ---------------------------------------------
@@ -181,20 +192,34 @@
           inputManager.currentInput()
         );
 
-        counter += updateImage(cellValue, cell.querySelector("img"));
+        if (cellValue) {
+          counter += updateImage(cellValue, cell.querySelector("img"));
 
-        if (counter > mazeArray.length * 2 - 2) {
-          const [row, col] = getRC(eventAttr);
-          const currentInput = inputManager.currentInput();
-          const validation = checkValidation(mazeArray, currentInput, row, col);
+          if (counter > mazeArray.length * 2 - 2) {
+            const [row, col] = getRC(eventAttr);
+            const currentInput = inputManager.currentInput();
+            const validation = checkValidation(
+              mazeArray,
+              currentInput,
+              row,
+              col
+            );
 
-          setTimeout(() => {
-            showWinning(validation, currentInput);
-          }, 800);
+            let status = "";
+            if (validation) {
+              status = "win";
+            } else if (counter === mazeArray.length ** 2 && !validation) {
+              status = "draw";
+            }
+
+            setTimeout(() => {
+              showWinning(status, currentInput);
+            }, 800);
+          }
+
+          inputManager.changeInput();
+          highlightCurrentPlayer(inputManager.currentInput());
         }
-
-        inputManager.changeInput();
-        highlightCurrentPlayer(inputManager.currentInput());
       });
     });
   }

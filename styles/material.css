@@ -10,7 +10,6 @@
   --white-100: #fbfbfc;
   --black-100: #1a1e21;
   --blue-200: #1776f7;
-
 }
 
 /* ******** Making reusable design ******** */
@@ -125,7 +124,6 @@ main {
   justify-content: space-evenly;
   align-items: center;
   transition: 0.5s all linear;
-
 }
 
 .player div {
@@ -186,7 +184,7 @@ main {
     box-shadow: -2px 4px 10px 10px rgba(224, 224, 224, 1);
   }
 
-  .player  {
+  .player {
     height: 60%;
     width: 200px;
     flex-flow: row;
@@ -211,7 +209,7 @@ main {
     width: 95vw;
   }
 
-  .player  {
+  .player {
     width: 150px;
     margin: 0;
   }
@@ -227,10 +225,9 @@ main {
     max-width: 80%;
   }
 
-  .player  {
+  .player {
     max-width: 120px;
   }
-
 }
 
 @media screen and (max-width: 650px) {
@@ -252,7 +249,7 @@ main {
     justify-content: space-between;
   }
 
-  .player  {
+  .player {
     width: 40%;
     min-width: 60px;
   }
@@ -265,20 +262,17 @@ main {
   .player p {
     display: none;
   }
-
 }
-
-
 
 div img {
   height: auto;
-  max-width: calc(100% - 30px);
+  max-width: calc(100% - 20px);
 }
 
 .conclusion {
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.9);  
+  background-color: rgba(0, 0, 0, 0.9);
   animation-name: scale;
   animation-duration: 0.5s;
   animation-fill-mode: both;
@@ -291,7 +285,6 @@ div img {
   }
   100% {
     transform: scale(1);
-
   }
 }
 
