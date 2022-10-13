@@ -183,12 +183,14 @@
 
         counter += updateImage(cellValue, cell.querySelector("img"));
 
-        if (counter > 4) {
+        if (counter > mazeArray.length * 2 - 2) {
           const [row, col] = getRC(eventAttr);
           const currentInput = inputManager.currentInput();
           const validation = checkValidation(mazeArray, currentInput, row, col);
 
-          showWinning(validation, currentInput);
+          setTimeout(() => {
+            showWinning(validation, currentInput);
+          }, 800);
         }
 
         inputManager.changeInput();

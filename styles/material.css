@@ -1,241 +1,236 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-
-:root{
-    --blue-100: #3676CE;
-    --gray-100: #232429;
-    --white-100: #FBFBFC;
-    --black-100: #1A1E21;
-    --blue-200: #1776F7;
+:root {
+  --blue-100: #3676ce;
+  --gray-100: #232429;
+  --white-100: #fbfbfc;
+  --black-100: #1a1e21;
+  --blue-200: #1776f7;
 }
 
 /* ******** Making reusable design ******** */
 .flex {
-    display: flex;
+  display: flex;
 }
 
 .justify-center {
-    justify-content: center;
+  justify-content: center;
 }
 
 .align-center {
-    align-items: center;
+  align-items: center;
 }
 
 .br-2 {
-    border-radius: 2px;
+  border-radius: 2px;
 }
 
 .br-4 {
-    border-radius: 4px;
+  border-radius: 4px;
 }
 
 .br-6 {
-    border-radius: 6px;
+  border-radius: 6px;
 }
 
 .br-8 {
-    border-radius: 8px;
+  border-radius: 8px;
 }
 
 .br-10 {
-    border-radius: 10px;
+  border-radius: 10px;
 }
 
 .grid {
-    display: grid;
+  display: grid;
 }
 
 .maxwidth {
-    max-width: 1500px;
+  max-width: 1500px;
 }
 
 .width-v {
-    width: 100vw;
+  width: 100vw;
 }
 
 .height-v {
-    height: 100vh;
+  height: 100vh;
 }
 
 .height-p {
-    height: 100%;
+  height: 100%;
 }
 
 .width-p {
-    width: 100%;
+  width: 100%;
 }
 
 .width-90v {
-    width: 90vw;
+  width: 90vw;
 }
 
 .absolute {
-    position: absolute;
+  position: absolute;
 }
 
 .remove {
-    display: none;
+  display: none;
 }
 /* ///////////////////////////////////////////////////////// */
 
 body {
-    background-color: var(--blue-100);
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-color: var(--blue-100);
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
 main {
-    height: 90vh;
-    background-color: var(--gray-100);
-    padding: 10px;
+  height: 90vh;
+  background-color: var(--gray-100);
+  padding: 10px;
 }
 
 .maze {
-    height: 500px;
-    width: 500px;
-    position: relative;
-    z-index: 5;
+  height: calc(100% - 10px);
+  width: 500px;
+  position: relative;
+  z-index: 5;
 }
 
 .border-for-maze {
-    border: 10px solid var(--black-100);
+  border: 10px solid var(--black-100);
 }
 
 .players {
-    height: 200px;
-    justify-content: space-between;
+  height: 180px;
+  justify-content: space-between;
 }
 
 .player {
-    height: 100%;
-    width: 120px;
-    margin: 0 100px;
-    flex-flow: column;
+  height: 100%;
+  width: 120px;
+  margin: 0 100px;
+  flex-flow: column;
 
-    justify-content: space-evenly;
-    align-items: center;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .player div {
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    padding: 2px;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  padding: 2px;
 }
 
 .player p {
-    margin: 5px auto;
-    color: var(--white-100);
-    text-transform: uppercase;
+  margin: 5px auto;
+  color: var(--white-100);
+  text-transform: uppercase;
 }
-
 
 @media screen and (max-width: 1024px) {
-    .player {
-        height: 85%;
-        width: 120px;
-        margin: 0 30px;
-    }
+  .player {
+    height: 85%;
+    width: 120px;
+    margin: 0 30px;
+  }
 }
 
-
 @media screen and (max-width: 900px) {
-    .players {
-        height: 170px;
-        width: 95vw;
-    }
+  .players {
+    height: 150px;
+    width: 95vw;
+  }
 
-    .border-for-maze {
-        border: 7px solid var(--black-100);
-    }
-
-    
+  .border-for-maze {
+    border: 7px solid var(--black-100);
+  }
 }
 
 @media screen and (max-width: 800px) {
-    main.containor {
-        padding: 10px;
-        flex-flow: column;
-        justify-content: space-evenly;
-        align-items: center;
-    }
+  main.containor {
+    padding: 10px;
+    flex-flow: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
 
-    .maze {
-        height: 400px;
-        width: 400px;
-    }
+  .maze {
+    height: calc(100% - 10px);
+    width: 400px;
+  }
 
-    .players {
-        position: relative;
-        height: 120px;
-        max-width: 350px;
-        align-items: center;
-    }
+  .players {
+    position: relative;
+    height: 120px;
+    max-width: 350px;
+    align-items: center;
+  }
 
-    .player p{
-        margin: 1px auto;
-    }
+  .player p {
+    margin: 1px auto;
+  }
 }
 
-
 @media screen and (max-width: 650px) {
-    main.containor {
-        padding: 5px;
-    }
+  main.containor {
+    padding: 5px;
+  }
 
-    .maze {
-        height: 350px;
-        width: 350px;
-    }
+  .maze {
+    height: calc(100% - 10px);
+    width: 350px;
+  }
 
-    .players {
-        height: 100px;
-        max-width: 300px;
-    }
+  .players {
+    height: 100px;
+    max-width: 300px;
+  }
 
-    .border-for-maze {
-        border: 5px solid var(--black-100);
-    }
-
+  .border-for-maze {
+    border: 5px solid var(--black-100);
+  }
 }
 
 .mthighlight {
-    border-color: white;
+  -webkit-box-shadow: -4px 7px 21px 21px rgba(224, 224, 224, 1);
+  -moz-box-shadow: -4px 7px 21px 21px rgba(224, 224, 224, 1);
+  box-shadow: -4px 7px 21px 21px rgba(224, 224, 224, 1);
 }
 
 div img {
-    height: auto;
-    max-width: calc(100% - 30px);
+  height: auto;
+  max-width: calc(100% - 30px);
 }
 
 .conclusion {
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.9);
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
 div.status {
-background-color: var(--gray-100);
-    -webkit-box-shadow: -4px 7px 42px 21px rgba(224,224,224,1);
--moz-box-shadow: -4px 7px 42px 21px rgba(224,224,224,1);
-box-shadow: -4px 7px 42px 21px rgba(224,224,224,1);
+  background-color: var(--gray-100);
+  -webkit-box-shadow: -4px 7px 42px 21px rgba(224, 224, 224, 1);
+  -moz-box-shadow: -4px 7px 42px 21px rgba(224, 224, 224, 1);
+  box-shadow: -4px 7px 42px 21px rgba(224, 224, 224, 1);
 }
 
 button.replay {
-    width: 100%;
-    height: 50px;
-    font-size: 1.2rem;
-    letter-spacing: 0.5rem;
-    color: var(--gray-100);
-    border: none;
+  width: 100%;
+  height: 50px;
+  font-size: 1.2rem;
+  letter-spacing: 0.5rem;
+  color: var(--gray-100);
+  border: none;
 }
 
 button.replay:hover {
-    background-color: var(--blue-200);
-    color: var(--white-100);
-
+  background-color: var(--blue-200);
+  color: var(--white-100);
 }
