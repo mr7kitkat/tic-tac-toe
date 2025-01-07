@@ -8,10 +8,27 @@
     <link rel="stylesheet" href="./styles/main.css" />
     <script src="./scripts/main.js" defer></script>
   </head>
-  <body>
-    <main>
-      <h1>Tic Tac Toe</h1>
+  <body class="flex">
+    <main class="flex">
+      <h1>Tic Tac Toe !</h1>
+      <div class="score-board">
+        <div class="flex active" data-id="❌">
+          <span>❌</span><span class="score" data-score="0"></span>
+        </div>
+        <div class="flex" data-id="⭕">
+          <span>⭕</span><span class="score" data-score="0"></span>
+        </div>
+      </div>
       <div class="maze"></div>
+      <dialog>
+        <div id="dialog_containor" class="flex">
+          <h2><span id="winner"></span> Wins!</h2>
+          <div class="btns">
+            <button id="replay">Replay</button>
+            <button id="close">Close</button>
+          </div>
+        </div>
+      </dialog>
     </main>
   </body>
 </html>
