@@ -260,8 +260,6 @@ function View() {
 }
 
 
-
-
 function App(mazeElement, dialogBoxElement) {
     const gameBoard = Board(customPlugins());
     const viewEngine = View();
@@ -276,6 +274,8 @@ function App(mazeElement, dialogBoxElement) {
         gameBoard.mark(row, col);
         const winner = gameBoard.getWinner();
         if (winner) {
+            render();
+
             viewEngine.handleWinSituation(dialogBoxElement, winner, replayGame)
         }
         else {

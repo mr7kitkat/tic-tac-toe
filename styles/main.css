@@ -2,7 +2,8 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  --border5: 5px solid white;
+  --red: #f03a17;
+  --border5: 5px solid var(--red);
   --mazeSize: clamp(300px, 400px, 600px);
 }
 
@@ -19,9 +20,9 @@
 body {
   height: 100%;
   width: 100%;
-  background: url(https://img.freepik.com/free-photo/abstract-blur-empty-green-gradient-studio-well-use-as-background-website-template-frame-business-report_1258-68149.jpg?t=st=1736227933~exp=1736231533~hmac=68347f438d401fdfc3e8930ac29b260566e75f63eb62321398e8efcc6916c3dc&w=740);
   font-family: Arial, Helvetica, sans-serif;
-  color: white;
+  background-color: black;
+  color: var(--red);
   font-size: 16px;
 }
 
@@ -67,7 +68,7 @@ div.cell span {
 }
 
 .score-board .active {
-  background-color: green;
+  background-color: white;
 }
 
 .score-board span {
